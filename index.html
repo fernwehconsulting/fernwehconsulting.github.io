@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayşe Şahin – Yurt Dışında Eğitim Danışmanlığı</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Mulish:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FAF7F2;
+    --warm-brown: #6B4226;
+    --terracotta: #C1673A;
+    --gold: #D4A847;
+    --dark: #1E1610;
+    --mid: #5A4035;
+    --light-text: #8C7B6E;
+    --white: #FFFFFF;
+    --card-bg: #FFFCF8;
+    --border: rgba(107,66,38,0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Mulish', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,247,242,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; color: var(--warm-brown); font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--mid);
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--terracotta); }
+  .nav-cta {
+    background: var(--terracotta); color: white !important;
+    padding: 0.45rem 1.2rem; border-radius: 2rem;
+    text-transform: uppercase; font-size: 0.8rem !important;
+    letter-spacing: 0.06em; font-weight: 700 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--warm-brown) !important; color: white !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 100px 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 80% 50%, rgba(193,103,58,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 20% 80%, rgba(212,168,71,0.07) 0%, transparent 60%);
+  }
+  .hero-pattern {
+    position: absolute; inset: 0; opacity: 0.03;
+    background-image: repeating-linear-gradient(45deg, var(--warm-brown) 0, var(--warm-brown) 1px, transparent 0, transparent 50%);
+    background-size: 20px 20px;
+  }
+  .hero-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+    position: relative;
+  }
+  .hero-stamp {
+    position: absolute; top: -20px; right: -10px;
+    width: 110px; height: 110px;
+    border: 3px solid var(--gold);
+    border-radius: 50%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    transform: rotate(12deg);
+    background: var(--cream);
+  }
+  .hero-stamp span { font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--terracotta); font-weight: 700; }
+  .hero-stamp .stamp-big { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--warm-brown); }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(193,103,58,0.1); border: 1px solid rgba(193,103,58,0.25);
+    border-radius: 2rem; padding: 0.3rem 1rem;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--terracotta); margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before { content: '✈'; font-size: 0.9rem; }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 4vw, 3.5rem);
+    line-height: 1.15;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+  }
+  h1 em { color: var(--terracotta); font-style: italic; }
+  .hero-desc {
+    font-size: 1.05rem; color: var(--mid); line-height: 1.8;
+    margin-bottom: 2rem; font-weight: 300;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--terracotta); color: white;
+    padding: 0.85rem 2rem; border-radius: 3rem;
+    text-decoration: none; font-weight: 700;
+    font-size: 0.9rem; letter-spacing: 0.04em;
+    transition: transform 0.2s, background 0.2s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary:hover { background: var(--warm-brown); transform: translateY(-2px); }
+  .btn-secondary {
+    border: 2px solid var(--warm-brown); color: var(--warm-brown);
+    padding: 0.85rem 2rem; border-radius: 3rem;
+    text-decoration: none; font-weight: 700;
+    font-size: 0.9rem; letter-spacing: 0.04em;
+    transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-secondary:hover { background: var(--warm-brown); color: white; }
+
+  /* HERO CARD */
+  .hero-card {
+    background: var(--white);
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(107,66,38,0.08);
+  }
+  .hero-card-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: var(--dark);
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 0.3rem 1.2rem; border-radius: 2rem;
+    white-space: nowrap;
+  }
+  .profile-row {
+    display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;
+  }
+  .profile-avatar {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--terracotta), var(--warm-brown));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; color: white; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .profile-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--dark); }
+  .profile-title { font-size: 0.8rem; color: var(--light-text); font-weight: 600; margin-top: 2px; letter-spacing: 0.04em; }
+  .profile-bio { font-size: 0.88rem; color: var(--mid); line-height: 1.7; margin-bottom: 1.5rem; }
+  .mini-stats {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .mini-stat {
+    background: var(--cream);
+    border-radius: 12px; padding: 0.75rem; text-align: center;
+  }
+  .mini-stat-num { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--terracotta); font-weight: 700; }
+  .mini-stat-lbl { font-size: 0.7rem; color: var(--light-text); font-weight: 600; letter-spacing: 0.04em; margin-top: 2px; }
+  .contact-chips { display: flex; flex-direction: column; gap: 0.4rem; margin-top: 1.2rem; }
+  .chip {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8rem; color: var(--mid); font-weight: 600;
+  }
+  .chip-icon { font-size: 0.9rem; }
+
+  /* SECTION */
+  section { padding: 6rem 2rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--terracotta);
+    margin-bottom: 0.75rem;
+  }
+  .section-label::before, .section-label::after { content: '—'; opacity: 0.5; }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    color: var(--dark); margin-bottom: 1rem; line-height: 1.2;
+  }
+  h2 em { color: var(--terracotta); font-style: italic; }
+  .section-desc { font-size: 1rem; color: var(--mid); line-height: 1.8; max-width: 560px; }
+
+  /* PACKAGES */
+  #paketler { background: var(--white); }
+  .packages-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .package-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem 1.75rem;
+    position: relative;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .package-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(107,66,38,0.1); }
+  .package-card.featured {
+    border-color: var(--terracotta);
+    border-width: 2px;
+    background: var(--white);
+  }
+  .featured-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--terracotta); color: white;
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 0.3rem 1.2rem; border-radius: 2rem;
+    white-space: nowrap;
+  }
+  .pkg-icon {
+    width: 48px; height: 48px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 1.25rem;
+  }
+  .pkg-icon.bronze { background: rgba(212,168,71,0.12); }
+  .pkg-icon.silver { background: rgba(193,103,58,0.1); }
+  .pkg-icon.gold-bg { background: rgba(107,66,38,0.08); }
+  .pkg-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700; color: var(--dark); margin-bottom: 0.25rem;
+  }
+  .pkg-tagline { font-size: 0.82rem; color: var(--light-text); margin-bottom: 1.5rem; }
+  .pkg-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; color: var(--terracotta); font-weight: 700;
+    margin-bottom: 1.5rem; line-height: 1;
+  }
+  .pkg-price span { font-size: 1rem; font-family: 'Mulish', sans-serif; color: var(--light-text); font-weight: 400; }
+  .pkg-features { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem; }
+  .pkg-features li {
+    display: flex; align-items: flex-start; gap: 0.6rem;
+    font-size: 0.85rem; color: var(--mid); line-height: 1.5;
+  }
+  .pkg-features li::before {
+    content: '✓'; color: var(--terracotta); font-weight: 700;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .pkg-note { font-size: 0.75rem; color: var(--light-text); font-style: italic; margin-top: -0.5rem; margin-bottom: 1.5rem; }
+  .pkg-btn {
+    display: block; text-align: center; text-decoration: none;
+    padding: 0.8rem; border-radius: 2rem;
+    font-weight: 700; font-size: 0.85rem; letter-spacing: 0.04em;
+    transition: all 0.2s;
+  }
+  .pkg-btn.outline {
+    border: 2px solid var(--terracotta); color: var(--terracotta);
+  }
+  .pkg-btn.outline:hover { background: var(--terracotta); color: white; }
+  .pkg-btn.solid {
+    background: var(--terracotta); color: white;
+  }
+  .pkg-btn.solid:hover { background: var(--warm-brown); }
+
+  /* EXTRAS */
+  #ekler { background: var(--cream); }
+  .extras-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem; margin-top: 3rem;
+  }
+  .extra-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+    transition: transform 0.2s;
+  }
+  .extra-card:hover { transform: translateY(-3px); }
+  .extra-icon { font-size: 1.8rem; flex-shrink: 0; }
+  .extra-name { font-weight: 700; font-size: 0.9rem; color: var(--dark); margin-bottom: 0.2rem; }
+  .extra-price { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--terracotta); font-weight: 700; }
+
+  /* HAKKINDA */
+  #hakkinda { background: var(--white); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1.4fr;
+    gap: 4rem; align-items: start; margin-top: 3rem;
+  }
+  .about-portrait {
+    background: linear-gradient(160deg, var(--terracotta) 0%, var(--warm-brown) 100%);
+    border-radius: 24px;
+    aspect-ratio: 3/4;
+    display: flex; align-items: flex-end;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .portrait-initial {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -60%);
+    font-family: 'Playfair Display', serif; font-size: 6rem; color: rgba(255,255,255,0.2);
+    font-weight: 700; line-height: 1;
+  }
+  .portrait-name {
+    font-family: 'Playfair Display', serif; font-size: 1.3rem; color: white;
+    font-weight: 700; position: relative; z-index: 1;
+  }
+  .portrait-sub { font-size: 0.8rem; color: rgba(255,255,255,0.75); margin-top: 0.25rem; }
+  .about-text p { font-size: 0.95rem; color: var(--mid); line-height: 1.85; margin-bottom: 1rem; }
+  .experience-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+  .exp-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .exp-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--terracotta); flex-shrink: 0; margin-top: 5px;
+  }
+  .exp-label { font-weight: 700; font-size: 0.88rem; color: var(--dark); }
+  .exp-sub { font-size: 0.82rem; color: var(--light-text); margin-top: 2px; }
+
+  /* CONTACT */
+  #iletisim { background: var(--dark); }
+  #iletisim h2 { color: var(--white); }
+  #iletisim h2 em { color: var(--gold); }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; margin-top: 3rem; align-items: start;
+  }
+  .contact-info-desc { font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 2rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.9rem; color: rgba(255,255,255,0.85);
+    text-decoration: none; font-weight: 600;
+    transition: color 0.2s;
+  }
+  .contact-link:hover { color: var(--gold); }
+  .contact-link-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .contact-form {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px; padding: 2rem;
+  }
+  .form-group { margin-bottom: 1rem; }
+  .form-group label { display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 0.4rem; }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%; background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px; padding: 0.75rem 1rem;
+    color: white; font-family: 'Mulish', sans-serif;
+    font-size: 0.9rem; outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--gold); }
+  .form-group textarea { resize: vertical; min-height: 90px; }
+  .form-group select option { background: #2a1f15; color: white; }
+  .form-submit {
+    width: 100%; background: var(--terracotta); color: white;
+    border: none; border-radius: 2rem; padding: 0.9rem;
+    font-family: 'Mulish', sans-serif; font-size: 0.9rem;
+    font-weight: 700; letter-spacing: 0.04em; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .form-submit:hover { background: var(--gold); color: var(--dark); }
+
+  /* FOOTER */
+  footer {
+    background: #130d08; padding: 2rem;
+    text-align: center; color: rgba(255,255,255,0.3);
+    font-size: 0.8rem;
+  }
+  footer strong { color: rgba(255,255,255,0.6); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-inner, .packages-grid, .extras-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .hero-stamp { display: none; }
+    nav ul { display: none; }
+    .mini-stats { grid-template-columns: 1fr 1fr 1fr; }
+  }
+
+  /* SCROLL ANIMATION */
+  .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Ayşe Şahin</div>
+  <ul class="nav-links">
+    <li><a href="#paketler">Paketler</a></li>
+    <li><a href="#ekler">Ek Hizmetler</a></li>
+    <li><a href="#hakkinda">Hakkımda</a></li>
+    <li><a href="#iletisim" class="nav-cta">İletişime Geç</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Yurt Dışında Eğitim</div>
+      <h1>Geleceğin<br><em>Avrupa'da</em><br>başlıyor.</h1>
+      <p class="hero-desc">Avrupa'da lisans, yüksek lisans ve staj fırsatları için profesyonel danışmanlık sunuyoruz. Başvurudan kabule, vizeden uyum sürecine kadar her adımda yanınızdayım.</p>
+      <div class="hero-btns">
+        <a href="#paketler" class="btn-primary">Paketleri İncele →</a>
+        <a href="#iletisim" class="btn-secondary">Ücretsiz Görüşme</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="hero-card-badge">✦ Eğitim Danışmanınız</div>
+      <div class="hero-stamp">
+        <span>Pasaportunu</span>
+        <span class="stamp-big">✈</span>
+        <span>Kap!</span>
+      </div>
+      <div class="profile-row">
+        <div class="profile-avatar">AŞ</div>
+        <div>
+          <div class="profile-name">Ayşe Şahin</div>
+          <div class="profile-title">Psikolog & Eğitim Danışmanı</div>
+        </div>
+      </div>
+      <p class="profile-bio">Ege Üniversitesi Psikoloji bölümü mezunu. Hollanda'da Erasmus, Barselona'da staj deneyiminin ardından Berlin'de yüksek lisans eğitimime devam ediyorum. Kendi tecrübelerimden yola çıkarak Avrupa'da eğitim almak isteyen öğrencilere rehberlik ediyorum.</p>
+      <div class="mini-stats">
+        <div class="mini-stat">
+          <div class="mini-stat-num">3</div>
+          <div class="mini-stat-lbl">Ülke</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-num">3</div>
+          <div class="mini-stat-lbl">Paket</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-num">AB</div>
+          <div class="mini-stat-lbl">Uzman</div>
+        </div>
+      </div>
+      <div class="contact-chips">
+        <div class="chip"><span class="chip-icon">📞</span> +49 177 628 3932</div>
+        <div class="chip"><span class="chip-icon">✉️</span> psk.aysesahin@gmail.com</div>
+        <div class="chip"><span class="chip-icon">📸</span> @saysehn</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section id="paketler">
+  <div class="section-inner">
+    <div class="fade-up">
+      <div class="section-label">Hizmetler</div>
+      <h2>Lisans <em>Paketlerimiz</em></h2>
+      <p class="section-desc">İhtiyacınıza ve bütçenize uygun üç farklı paket sunuyoruz. Her paket, Avrupa'daki eğitim yolculuğunuzun farklı bir aşamasını kapsıyor.</p>
+    </div>
+
+    <div class="packages-grid">
+      <!-- TEMEL -->
+      <div class="package-card fade-up">
+        <div class="pkg-icon bronze">🎓</div>
+        <div class="pkg-name">Temel Paket</div>
+        <div class="pkg-tagline">Başvuru sürecinde destek</div>
+        <div class="pkg-price">850 € <span>tek seferlik</span></div>
+        <ul class="pkg-features">
+          <li>Niteliklerinize uygun üniversite & bölüm seçimi</li>
+          <li>Başvuru belgelerinin hazırlanması ve çevirisi</li>
+          <li>CV ve motivasyon mektubu hazırlama desteği</li>
+          <li>Üniversite başvurularının yapılması ve takibi</li>
+        </ul>
+        <p class="pkg-note">* Tercüme ve üniversite başvuru ücretleri dahil değildir.</p>
+        <a href="#iletisim" class="pkg-btn outline">Bilgi Al</a>
+      </div>
+
+      <!-- STANDART - FEATURED -->
+      <div class="package-card featured fade-up">
+        <div class="featured-badge">⭐ En Çok Tercih Edilen</div>
+        <div class="pkg-icon silver">🌍</div>
+        <div class="pkg-name">Standart Paket</div>
+        <div class="pkg-tagline">Vizeye kadar tam destek</div>
+        <div class="pkg-price">1.200 € <span>tek seferlik</span></div>
+        <ul class="pkg-features">
+          <li>Temel Paketin tüm içerikleri</li>
+          <li>Almanca kursu seçimi ve kayıt desteği</li>
+          <li>Bloke hesap / garantörlük danışmanlığı</li>
+          <li>Sağlık sigortası danışmanlığı</li>
+          <li>Vize başvurusu için belge hazırlama</li>
+          <li>Vize başvurusunun yapılması ve takibi</li>
+        </ul>
+        <p class="pkg-note">* Vize başvuru ücreti dahil değildir.</p>
+        <a href="#iletisim" class="pkg-btn solid">Hemen Başla</a>
+      </div>
+
+      <!-- PREMIUM -->
+      <div class="package-card fade-up">
+        <div class="pkg-icon gold-bg">✨</div>
+        <div class="pkg-name">Premium Paket</div>
+        <div class="pkg-tagline">Varışa kadar yanınızda</div>
+        <div class="pkg-price">1.500 € <span>tek seferlik</span></div>
+        <ul class="pkg-features">
+          <li>Standart Paketin tüm içerikleri</li>
+          <li>Yurt başvurusu desteği</li>
+          <li>Bloke hesap aktivasyonu ve banka hesabı açılması</li>
+          <li>Telefon hattı kurulumu</li>
+          <li>Anmeldung (ikametgah bildirimi) desteği</li>
+          <li>Almanya'ya varıştan itibaren 3 ay online uyum desteği</li>
+        </ul>
+        <p class="pkg-note">* Havalimanı karşılaması opsiyonel (+150 €).</p>
+        <a href="#iletisim" class="pkg-btn outline">Bilgi Al</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXTRAS -->
+<section id="ekler">
+  <div class="section-inner">
+    <div class="fade-up">
+      <div class="section-label">Opsiyonel</div>
+      <h2>Ek <em>Hizmetler</em></h2>
+      <p class="section-desc">Herhangi bir pakete ekleyebileceğiniz özel destek hizmetleri.</p>
+    </div>
+    <div class="extras-grid fade-up">
+      <div class="extra-card">
+        <div class="extra-icon">🏅</div>
+        <div>
+          <div class="extra-name">Burs Danışmanlığı</div>
+          <div class="extra-price">250 €</div>
+        </div>
+      </div>
+      <div class="extra-card">
+        <div class="extra-icon">🎤</div>
+        <div>
+          <div class="extra-name">Online Mülakat Provası</div>
+          <div class="extra-price">150 €</div>
+        </div>
+      </div>
+      <div class="extra-card">
+        <div class="extra-icon">🛬</div>
+        <div>
+          <div class="extra-name">Havalimanı Karşılaması</div>
+          <div class="extra-price">150 €</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HAKKINDA -->
+<section id="hakkinda">
+  <div class="section-inner">
+    <div class="fade-up">
+      <div class="section-label">Danışmanınız</div>
+      <h2>Ben <em>Kimim?</em></h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-portrait fade-up">
+        <div class="portrait-initial">AŞ</div>
+        <div>
+          <div class="portrait-name">Ayşe Şahin</div>
+          <div class="portrait-sub">Psikolog & Eğitim Danışmanı</div>
+        </div>
+      </div>
+      <div class="about-text fade-up">
+        <p>Ege Üniversitesi Psikoloji bölümünden mezun oldum. Lisans sürecimde Hollanda'da Erasmus eğitimi aldım ve Barselona'da staj deneyimi yaşadım. Şu anda Berlin'de yüksek lisans eğitimime devam ediyorum.</p>
+        <p>Yurt dışında eğitim almanın ne kadar zorlu ve bir o kadar da dönüştürücü bir deneyim olduğunu bizzat yaşadım. Belge karmaşasından vize stresine, şehir uyumundan yurt bulmaya kadar pek çok engeli aşmak zorunda kaldım.</p>
+        <p>Tüm bu deneyimlerimi sizin için bir rehbere dönüştürüyorum. Avrupa'da eğitim almak isteyen öğrencilerin sürecini olabildiğince kolay ve stressiz geçirmeleri için buradayım.</p>
+        <div class="experience-list">
+          <div class="exp-item">
+            <div class="exp-dot"></div>
+            <div>
+              <div class="exp-label">Ege Üniversitesi</div>
+              <div class="exp-sub">Psikoloji Lisansı • İzmir, Türkiye</div>
+            </div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-dot"></div>
+            <div>
+              <div class="exp-label">Erasmus Değişim Programı</div>
+              <div class="exp-sub">Hollanda</div>
+            </div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-dot"></div>
+            <div>
+              <div class="exp-label">Staj Deneyimi</div>
+              <div class="exp-sub">Barselona, İspanya</div>
+            </div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-dot"></div>
+            <div>
+              <div class="exp-label">Yüksek Lisans Öğrencisi</div>
+              <div class="exp-sub">Berlin, Almanya (Devam ediyor)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="iletisim">
+  <div class="section-inner">
+    <div class="fade-up">
+      <div class="section-label" style="color: var(--gold);">İletişim</div>
+      <h2>Hayallerinizi <em>konuşalım</em></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="fade-up">
+        <p class="contact-info-desc">Avrupa'daki eğitim yolculuğunuza ilk adımı atmak için benimle iletişime geçin. Ücretsiz bir ön görüşme ile sizin için en uygun paketi birlikte belirleyelim.</p>
+        <div class="contact-links">
+          <a href="tel:+4917762839832" class="contact-link">
+            <div class="contact-link-icon">📞</div>
+            +49 177 628 3932
+          </a>
+          <a href="mailto:psk.aysesahin@gmail.com" class="contact-link">
+            <div class="contact-link-icon">✉️</div>
+            psk.aysesahin@gmail.com
+          </a>
+          <a href="https://instagram.com/saysehn" class="contact-link" target="_blank">
+            <div class="contact-link-icon">📸</div>
+            @saysehn
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form fade-up">
+        <div class="form-group">
+          <label>Adınız Soyadınız</label>
+          <input type="text" placeholder="Adınızı giriniz">
+        </div>
+        <div class="form-group">
+          <label>E-posta</label>
+          <input type="email" placeholder="ornek@email.com">
+        </div>
+        <div class="form-group">
+          <label>İlgilendiğiniz Paket</label>
+          <select>
+            <option value="">Paket seçiniz...</option>
+            <option>Temel Paket – 850 €</option>
+            <option>Standart Paket – 1.200 €</option>
+            <option>Premium Paket – 1.500 €</option>
+            <option>Henüz karar vermedim</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Mesajınız</label>
+          <textarea placeholder="Sizi daha iyi tanımak için neler paylaşmak istersiniz?"></textarea>
+        </div>
+        <button class="form-submit" onclick="alert('Mesajınız için teşekkürler! En kısa sürede size dönüş yapılacaktır.')">Mesaj Gönder ✈</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>Ayşe Şahin</strong> — Eğitim Danışmanlığı · Berlin, Almanya<br>
+  <span style="margin-top:0.5rem; display:block;">psk.aysesahin@gmail.com · +49 177 628 3932</span>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
