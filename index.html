@@ -33,25 +33,34 @@
   /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 75px;
+    transition: background 0.3s, border-color 0.3s, backdrop-filter 0.3s;
+  }
+  nav.nav-scrolled {
     background: rgba(250,247,242,0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 64px;
   }
   .nav-logo {
     font-family: 'Playfair Display', serif;
-    font-size: 1.1rem; color: var(--warm-brown); font-weight: 700;
-    letter-spacing: 0.02em;
+    font-size: 1.5rem; font-weight: 700; letter-spacing: 0.02em;
+    color: rgba(255,255,255,0.95);
+    transition: color 0.3s;
   }
+  nav.nav-scrolled .nav-logo { color: var(--warm-brown); }
   .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a {
-    text-decoration: none; color: var(--mid);
+    text-decoration: none; color: rgba(255,255,255,0.88);
     font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em;
     text-transform: uppercase; transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--terracotta); }
+  .nav-links a:hover { color: #fff; }
+  nav.nav-scrolled .nav-links a { color: var(--mid); }
+  nav.nav-scrolled .nav-links a:hover { color: var(--terracotta); }
   .nav-cta {
     background: var(--terracotta); color: white !important;
     padding: 0.45rem 1.2rem; border-radius: 2rem;
@@ -68,15 +77,30 @@
     padding: 100px 2rem 4rem;
     position: relative;
     overflow: hidden;
+    background-image: url('IMG_1092.JPG');
+    background-size: cover;
+    background-position: center;
   }
   .hero-bg {
     position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 70% 60% at 80% 50%, rgba(193,103,58,0.08) 0%, transparent 70%),
-      radial-gradient(ellipse 50% 40% at 20% 80%, rgba(212,168,71,0.07) 0%, transparent 60%);
+    background: linear-gradient(105deg, rgba(20,12,6,0.6) 0%, rgba(20,12,6,0.25) 50%, rgba(20,12,6,0.05) 100%);
   }
+  .hero-left h1 { color: #fff; }
+  .hero-left h1 em { color: var(--terracotta); }
+  .hero-left .hero-desc { color: rgba(255,255,255,0.88); }
+  .hero-left .hero-eyebrow {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.3);
+    color: #fff;
+  }
+  .hero-left .hero-eyebrow::before { content: '✈'; }
+  .hero-left .btn-secondary {
+    border-color: rgba(255,255,255,0.8);
+    color: #fff;
+  }
+  .hero-left .btn-secondary:hover { background: #fff; color: var(--dark); }
   .hero-pattern {
-    position: absolute; inset: 0; opacity: 0.03;
+    position: absolute; inset: 0; opacity: 0.02;
     background-image: repeating-linear-gradient(45deg, var(--warm-brown) 0, var(--warm-brown) 1px, transparent 0, transparent 50%);
     background-size: 20px 20px;
   }
@@ -160,10 +184,9 @@
   }
   .profile-avatar {
     width: 64px; height: 64px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--terracotta), var(--warm-brown));
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem; color: white; font-weight: 700;
+    background-image: url('IMG_1457.jpeg');
+    background-size: cover;
+    background-position: center;
     flex-shrink: 0;
   }
   .profile-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--dark); }
@@ -206,6 +229,12 @@
 
   /* PACKAGES */
   #paketler { background: var(--white); }
+  #staj { background: var(--cream); }
+  .packages-grid-2 {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem; margin-top: 3rem;
+    max-width: 760px;
+  }
   .packages-grid {
     display: grid; grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem; margin-top: 3rem;
@@ -275,31 +304,16 @@
   }
   .pkg-btn.solid:hover { background: var(--warm-brown); }
 
-  /* EXTRAS */
-  #ekler { background: var(--cream); }
-  .extras-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem; margin-top: 3rem;
-  }
-  .extra-card {
-    background: var(--white); border: 1px solid var(--border);
-    border-radius: 16px; padding: 1.5rem;
-    display: flex; align-items: center; gap: 1rem;
-    transition: transform 0.2s;
-  }
-  .extra-card:hover { transform: translateY(-3px); }
-  .extra-icon { font-size: 1.8rem; flex-shrink: 0; }
-  .extra-name { font-weight: 700; font-size: 0.9rem; color: var(--dark); margin-bottom: 0.2rem; }
-  .extra-price { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--terracotta); font-weight: 700; }
-
-  /* HAKKINDA */
+/* HAKKINDA */
   #hakkinda { background: var(--white); }
   .about-grid {
     display: grid; grid-template-columns: 1fr 1.4fr;
     gap: 4rem; align-items: start; margin-top: 3rem;
   }
   .about-portrait {
-    background: linear-gradient(160deg, var(--terracotta) 0%, var(--warm-brown) 100%);
+    background-image: url('IMG_1457.jpeg');
+    background-size: cover;
+    background-position: center top;
     border-radius: 24px;
     aspect-ratio: 3/4;
     display: flex; align-items: flex-end;
@@ -307,10 +321,11 @@
     position: relative;
     overflow: hidden;
   }
-  .portrait-initial {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -60%);
-    font-family: 'Playfair Display', serif; font-size: 6rem; color: rgba(255,255,255,0.2);
-    font-weight: 700; line-height: 1;
+  .about-portrait::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(20,12,6,0.6) 0%, transparent 50%);
+    border-radius: 24px;
   }
   .portrait-name {
     font-family: 'Playfair Display', serif; font-size: 1.3rem; color: white;
@@ -391,7 +406,7 @@
 
   /* RESPONSIVE */
   @media (max-width: 900px) {
-    .hero-inner, .packages-grid, .extras-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .hero-inner, .packages-grid, .packages-grid-2, .about-grid, .contact-grid { grid-template-columns: 1fr; }
     .hero-stamp { display: none; }
     nav ul { display: none; }
     .mini-stats { grid-template-columns: 1fr 1fr 1fr; }
@@ -405,12 +420,12 @@
 <body>
 
 <nav>
-  <div class="nav-logo">Ayşe Şahin</div>
+  <div class="nav-logo">Fernweh Consulting</div>
   <ul class="nav-links">
-    <li><a href="#paketler">Paketler</a></li>
-    <li><a href="#ekler">Ek Hizmetler</a></li>
+    <li><a href="#paketler">Eğitim</a></li>
+    <li><a href="#staj">Staj</a></li>
     <li><a href="#hakkinda">Hakkımda</a></li>
-    <li><a href="#iletisim" class="nav-cta">İletişime Geç</a></li>
+    <li><a href="#iletisim" class="nav-cta">İletişim</a></li>
   </ul>
 </nav>
 
@@ -419,10 +434,10 @@
   <div class="hero-bg"></div>
   <div class="hero-pattern"></div>
   <div class="hero-inner">
-    <div>
+    <div class="hero-left">
       <div class="hero-eyebrow">Yurt Dışında Eğitim</div>
-      <h1>Geleceğin<br><em>Avrupa'da</em><br>başlıyor.</h1>
-      <p class="hero-desc">Avrupa'da lisans, yüksek lisans ve staj fırsatları için profesyonel danışmanlık sunuyoruz. Başvurudan kabule, vizeden uyum sürecine kadar her adımda yanınızdayım.</p>
+      <h1>Geleceğin<br><em>Avrupa'da</em></h1>
+      <p class="hero-desc">Avrupa'da lisans, yüksek lisans ve staj fırsatları için profesyonel danışmanlık sunuyorum. Başvurudan kabule, vizeden uyum sürecine kadar her adımda yanınızdayım.</p>
       <div class="hero-btns">
         <a href="#paketler" class="btn-primary">Paketleri İncele →</a>
         <a href="#iletisim" class="btn-secondary">Ücretsiz Görüşme</a>
@@ -437,7 +452,7 @@
         <span>Kap!</span>
       </div>
       <div class="profile-row">
-        <div class="profile-avatar">AŞ</div>
+        <div class="profile-avatar"></div>
         <div>
           <div class="profile-name">Ayşe Şahin</div>
           <div class="profile-title">Psikolog & Eğitim Danışmanı</div>
@@ -446,16 +461,16 @@
       <p class="profile-bio">Ege Üniversitesi Psikoloji bölümü mezunu. Hollanda'da Erasmus, Barselona'da staj deneyiminin ardından Berlin'de yüksek lisans eğitimime devam ediyorum. Kendi tecrübelerimden yola çıkarak Avrupa'da eğitim almak isteyen öğrencilere rehberlik ediyorum.</p>
       <div class="mini-stats">
         <div class="mini-stat">
-          <div class="mini-stat-num">3</div>
-          <div class="mini-stat-lbl">Ülke</div>
+          <div class="mini-stat-num">🎓</div>
+          <div class="mini-stat-lbl">Lisans</div>
         </div>
         <div class="mini-stat">
-          <div class="mini-stat-num">3</div>
-          <div class="mini-stat-lbl">Paket</div>
+          <div class="mini-stat-num">📚</div>
+          <div class="mini-stat-lbl">Yüksek Lisans</div>
         </div>
         <div class="mini-stat">
-          <div class="mini-stat-num">AB</div>
-          <div class="mini-stat-lbl">Uzman</div>
+          <div class="mini-stat-num">💼</div>
+          <div class="mini-stat-lbl">Staj</div>
         </div>
       </div>
       <div class="contact-chips">
@@ -472,7 +487,7 @@
   <div class="section-inner">
     <div class="fade-up">
       <div class="section-label">Hizmetler</div>
-      <h2>Lisans <em>Paketlerimiz</em></h2>
+      <h2><em>Lisans ve Yüksek Lisans</em> Danışmanlığı</h2>
       <p class="section-desc">İhtiyacınıza ve bütçenize uygun üç farklı paket sunuyoruz. Her paket, Avrupa'daki eğitim yolculuğunuzun farklı bir aşamasını kapsıyor.</p>
     </div>
 
@@ -533,35 +548,47 @@
   </div>
 </section>
 
-<!-- EXTRAS -->
-<section id="ekler">
+<!-- STAJ -->
+<section id="staj">
   <div class="section-inner">
     <div class="fade-up">
-      <div class="section-label">Opsiyonel</div>
-      <h2>Ek <em>Hizmetler</em></h2>
-      <p class="section-desc">Herhangi bir pakete ekleyebileceğiniz özel destek hizmetleri.</p>
+      <div class="section-label">Hizmetler</div>
+      <h2><em>Staj</em> Danışmanlığı</h2>
+      <p class="section-desc">Avrupa'da staj yapmak isteyenler için iki farklı destek paketi. Kendi staj deneyimlerimden yola çıkarak süreci sizin için kolaylaştırıyorum.</p>
     </div>
-    <div class="extras-grid fade-up">
-      <div class="extra-card">
-        <div class="extra-icon">🏅</div>
-        <div>
-          <div class="extra-name">Burs Danışmanlığı</div>
-          <div class="extra-price">250 €</div>
-        </div>
+
+    <div class="packages-grid-2">
+      <!-- BAŞVURU -->
+      <div class="package-card fade-up">
+        <div class="pkg-icon bronze">💼</div>
+        <div class="pkg-name">Başvuru Paketi</div>
+        <div class="pkg-tagline">Başvurudan kabule destek</div>
+        <div class="pkg-price">400 € <span>tek seferlik</span></div>
+        <ul class="pkg-features">
+          <li>Profilinize uygun staj pozisyonlarının araştırılması</li>
+          <li>CV ve motivasyon mektubu hazırlama</li>
+          <li>Başvuruların yapılması ve takibi</li>
+          <li>Başvuru stratejisi danışmanlığı</li>
+        </ul>
+        <a href="#iletisim" class="pkg-btn outline">Bilgi Al</a>
       </div>
-      <div class="extra-card">
-        <div class="extra-icon">🎤</div>
-        <div>
-          <div class="extra-name">Online Mülakat Provası</div>
-          <div class="extra-price">150 €</div>
-        </div>
-      </div>
-      <div class="extra-card">
-        <div class="extra-icon">🛬</div>
-        <div>
-          <div class="extra-name">Havalimanı Karşılaması</div>
-          <div class="extra-price">150 €</div>
-        </div>
+
+      <!-- TAM DESTEK - FEATURED -->
+      <div class="package-card featured fade-up">
+        <div class="featured-badge">⭐ Önerilen</div>
+        <div class="pkg-icon silver">🌍</div>
+        <div class="pkg-name">Tam Destek Paketi</div>
+        <div class="pkg-tagline">Varışa kadar yanınızda</div>
+        <div class="pkg-price">700 € <span>tek seferlik</span></div>
+        <ul class="pkg-features">
+          <li>Başvuru Paketinin tüm içerikleri</li>
+          <li>Çalışma izni / vize danışmanlığı</li>
+          <li>Konaklama araştırması desteği</li>
+          <li>Sağlık sigortası danışmanlığı</li>
+          <li>Varıştan itibaren 1 ay online uyum desteği</li>
+        </ul>
+        <p class="pkg-note">* Vize başvuru ücreti dahil değildir.</p>
+        <a href="#iletisim" class="pkg-btn solid">Hemen Başla</a>
       </div>
     </div>
   </div>
@@ -576,8 +603,7 @@
     </div>
     <div class="about-grid">
       <div class="about-portrait fade-up">
-        <div class="portrait-initial">AŞ</div>
-        <div>
+        <div style="position:relative;z-index:1;">
           <div class="portrait-name">Ayşe Şahin</div>
           <div class="portrait-sub">Psikolog & Eğitim Danışmanı</div>
         </div>
@@ -690,6 +716,14 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+const nav = document.querySelector('nav');
+function updateNav() {
+  const heroHeight = document.querySelector('.hero').offsetHeight;
+  nav.classList.toggle('nav-scrolled', window.scrollY > heroHeight - nav.offsetHeight);
+}
+window.addEventListener('scroll', updateNav, { passive: true });
+updateNav();
 </script>
 </body>
 </html>
