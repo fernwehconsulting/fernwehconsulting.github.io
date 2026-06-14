@@ -489,6 +489,7 @@
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    font-size: 0.85rem;
   }
   .read-more-btn {
     order: 4; align-self: flex-start;
@@ -544,7 +545,8 @@
     }
     #tPrev { left: 6px; }
     #tNext { right: 6px; }
-    .testimonial-text { font-size: 0.85rem; }
+    .testimonial-text,
+    .testimonial-text.clamped { font-size: 0.85rem; }
   }
 
   /* SCROLL ANIMATION */
@@ -578,8 +580,7 @@
       <h1>Geleceğin<br><em>Avrupa'da</em></h1>
       <div class="hero-eyebrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>Pasaportunu kap gidiyoruz!</div>
       <div class="hero-btns">
-        <a href="#paketler" class="btn-primary">Paketleri İncele →</a>
-        <a href="#iletisim" class="btn-primary">Ücretsiz Görüşme</a>
+        <a href="#iletisim" class="btn-primary">İletişime Geç</a>
       </div>
     </div>
 
@@ -710,14 +711,14 @@
               <span class="staj-list-item-name">CV Taslak Hazırlama</span>
               <span class="staj-list-item-price"></span>
             </div>
-            <p class="staj-list-item-desc">Bilgi toplama formu sonrası sıfırdan Almanya standardında CV hazırlanır; 1 revizyon hakkı dahildir.</p>
+            <p class="staj-list-item-desc">Bilgi toplama formu sonrası sıfırdan Avrupa standardında CV hazırlanır; 1 revizyon hakkı dahildir.</p>
           </div>
           <div class="staj-list-item">
             <div class="staj-list-item-header">
               <span class="staj-list-item-name">CV Geri Bildirimi</span>
               <span class="staj-list-item-price"></span>
             </div>
-            <p class="staj-list-item-desc">60 dk online görüşmede Almanya formatına uygunluk kontrolü yapılır ve yazılı özet notlar teslim edilir.</p>
+            <p class="staj-list-item-desc">Bir seanslık online görüşmede Avrupa formatına uygunluk kontrolü yapılır ve yazılı özet notlar teslim edilir.</p>
           </div>
           <div class="staj-list-item">
             <div class="staj-list-item-header">
@@ -744,28 +745,28 @@
               <span class="staj-list-item-name">Üniversite & Program Seçim Seansı</span>
               <span class="staj-list-item-price"></span>
             </div>
-            <p class="staj-list-item-desc">60 dk online görüşmede not, dil ve hedefe göre 3–5 program analiz edilir; yazılı özet ve öneri listesi teslim edilir.</p>
+            <p class="staj-list-item-desc">Bir seanslık online görüşmede not, dil ve hedefe göre 3–5 program analiz edilir; yazılı özet ve öneri listesi teslim edilir.</p>
           </div>
           <div class="staj-list-item">
             <div class="staj-list-item-header">
               <span class="staj-list-item-name">Başvuru Stratejisi Seansı</span>
               <span class="staj-list-item-price"></span>
             </div>
-            <p class="staj-list-item-desc">60 dk online görüşmede hangi üniversitelere, hangi sırayla ve ne zaman başvurulacağı planlanır.</p>
+            <p class="staj-list-item-desc">Bir seanslık online görüşmede hangi üniversitelere, hangi sırayla ve ne zaman başvurulacağı planlanır.</p>
           </div>
           <div class="staj-list-item">
             <div class="staj-list-item-header">
               <span class="staj-list-item-name">Vize Hazırlık Seansı</span>
               <span class="staj-list-item-price"></span>
             </div>
-            <p class="staj-list-item-desc">45 dk online görüşmede bloke hesap, belgeler ve randevu süreci aktarılır; belge kontrol listesi teslim edilir.</p>
+            <p class="staj-list-item-desc">Bir seanslık online görüşmede bloke hesap, belgeler ve randevu süreci aktarılır; belge kontrol listesi teslim edilir.</p>
           </div>
           <div class="staj-list-item">
             <div class="staj-list-item-header">
               <span class="staj-list-item-name">Aile Bilgilendirme Görüşmesi</span>
               <span class="staj-list-item-price"></span>
             </div>
-            <p class="staj-list-item-desc">45 dk Türkçe görüşmede eğitim süreci, maliyetler ve güvenlik aktarılır. <span class="staj-list-item-note">Paket alan öğrencilerin aileleri için ücretsizdir.</span></p>
+            <p class="staj-list-item-desc">Bir seanslık online görüşmede başvuru süreçleri ve maliyetler hakkında bilgi verilir. <span class="staj-list-item-note">Paket alan öğrencilerin aileleri için ücretsizdir.</span></p>
           </div>
         </div>
         </div><!-- /staj-list-col -->
@@ -805,7 +806,7 @@
     <div class="fade-up">
       <div class="section-label">Öğrenci Deneyimleri</div>
       <h2><em>Yorumlar</em></h2>
-      <p class="section-desc">Avrupa yolculuğuna birlikte çıktığım bazı danışanlarımın deneyimleri.</p>
+      <p class="section-desc">Avrupa yolculuğuna destek olduğum bazı danışanlarımın deneyimleri...</p>
     </div>
     <div class="testimonial-slider fade-up">
       <div class="testimonial-row">
@@ -889,8 +890,8 @@
     <div class="contact-grid">
       <div class="fade-up">
         <div class="section-label" style="color: var(--gold);">İletişim</div>
-        <h2>Hayallerinizi <em>konuşalım</em></h2>
-        <p class="contact-info-desc">Avrupa'daki eğitim yolculuğunuza ilk adımı atmak için benimle iletişime geçin. Ücretsiz bir ön görüşme ile sizin için en uygun paketi birlikte belirleyelim.</p>
+        <h2>Hayallerinizi <em>konuşalım.</em></h2>
+        <p class="contact-info-desc">Avrupa'daki eğitim yolculuğunuza ilk adımı atmak için benimle iletişime geçin. Sizin için en uygun paketi birlikte belirleyelim.</p>
         <div class="contact-links">
           <a href="https://wa.me/4917762839832" class="contact-link" target="_blank">
             <div class="contact-link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></div>
