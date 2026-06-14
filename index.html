@@ -70,6 +70,23 @@
   }
   .nav-cta:hover { background: var(--warm-brown) !important; color: white !important; }
 
+  /* HAMBURGER */
+  .hamburger {
+    display: none;
+    flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; width: 40px; height: 40px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: rgba(255,255,255,0.9); border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  nav.nav-scrolled .hamburger span { background: var(--warm-brown); }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
   /* HERO */
   .hero {
     min-height: 100vh;
@@ -85,20 +102,23 @@
     position: absolute; inset: 0;
     background: linear-gradient(105deg, rgba(20,12,6,0.6) 0%, rgba(20,12,6,0.25) 50%, rgba(20,12,6,0.05) 100%);
   }
-  .hero-left h1 { color: #fff; }
-  .hero-left h1 em { color: var(--terracotta); }
-  .hero-left .hero-desc { color: rgba(255,255,255,0.88); }
-  .hero-left .hero-eyebrow {
-    background: rgba(255,255,255,0.12);
-    border-color: rgba(255,255,255,0.3);
-    color: #fff;
+  .hero-left h1 { color: #fff; font-size: clamp(3.5rem, 5vw, 5.5rem); text-shadow: 3px 3px 0 rgba(0,0,0,0.35), 6px 6px 0 rgba(0,0,0,0.18); }
+  .hero-left h1 em { color: var(--terracotta); text-shadow: 3px 3px 0 #7A3818, 6px 6px 0 rgba(122,56,24,0.45); }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 2rem; padding: 0.3rem 1rem;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: #fff; margin-bottom: 1.5rem;
   }
-  .hero-left .hero-eyebrow::before { content: '✈'; }
+  .hero-eyebrow svg { flex-shrink: 0; }
+
   .hero-left .btn-secondary {
-    border-color: rgba(255,255,255,0.8);
-    color: #fff;
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--dark);
   }
-  .hero-left .btn-secondary:hover { background: #fff; color: var(--dark); }
+  .hero-left .btn-secondary:hover { background: #b8902e; border-color: #b8902e; color: var(--dark); }
   .hero-pattern {
     position: absolute; inset: 0; opacity: 0.02;
     background-image: repeating-linear-gradient(45deg, var(--warm-brown) 0, var(--warm-brown) 1px, transparent 0, transparent 50%);
@@ -110,27 +130,6 @@
     gap: 4rem; align-items: center;
     position: relative;
   }
-  .hero-stamp {
-    position: absolute; top: -20px; right: -10px;
-    width: 110px; height: 110px;
-    border: 3px solid var(--gold);
-    border-radius: 50%;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center;
-    transform: rotate(12deg);
-    background: var(--cream);
-  }
-  .hero-stamp span { font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--terracotta); font-weight: 700; }
-  .hero-stamp .stamp-big { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--warm-brown); }
-  .hero-eyebrow {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    background: rgba(193,103,58,0.1); border: 1px solid rgba(193,103,58,0.25);
-    border-radius: 2rem; padding: 0.3rem 1rem;
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--terracotta); margin-bottom: 1.5rem;
-  }
-  .hero-eyebrow::before { content: '✈'; font-size: 0.9rem; }
   h1 {
     font-family: 'Playfair Display', serif;
     font-size: clamp(2.4rem, 4vw, 3.5rem);
@@ -191,7 +190,7 @@
   }
   .profile-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--dark); }
   .profile-title { font-size: 0.8rem; color: var(--light-text); font-weight: 600; margin-top: 2px; letter-spacing: 0.04em; }
-  .profile-bio { font-size: 0.88rem; color: var(--mid); line-height: 1.7; margin-bottom: 1.5rem; }
+  .profile-bio { font-size: 0.88rem; color: var(--mid); line-height: 1.7; margin-bottom: 1rem; }
   .mini-stats {
     display: grid; grid-template-columns: 1fr 1fr 1fr;
     gap: 0.75rem;
@@ -200,7 +199,7 @@
     background: var(--cream);
     border-radius: 12px; padding: 0.75rem; text-align: center;
   }
-  .mini-stat-num { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--terracotta); font-weight: 700; }
+  .mini-stat-num { color: var(--terracotta); display: flex; align-items: center; justify-content: center; }
   .mini-stat-lbl { font-size: 0.7rem; color: var(--light-text); font-weight: 600; letter-spacing: 0.04em; margin-top: 2px; }
   .contact-chips { display: flex; flex-direction: column; gap: 0.4rem; margin-top: 1.2rem; }
   .chip {
@@ -250,13 +249,13 @@
   .package-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(107,66,38,0.1); }
   .package-card.featured {
     border-color: var(--terracotta);
-    border-width: 2px;
+    border-width: 3px;
     background: var(--white);
   }
   .featured-badge {
     position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
     background: var(--terracotta); color: white;
-    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em;
     text-transform: uppercase; padding: 0.3rem 1.2rem; border-radius: 2rem;
     white-space: nowrap;
   }
@@ -270,9 +269,9 @@
   .pkg-icon.gold-bg { background: rgba(107,66,38,0.08); }
   .pkg-name {
     font-family: 'Playfair Display', serif;
-    font-size: 1.2rem; font-weight: 700; color: var(--dark); margin-bottom: 0.25rem;
+    font-size: 1.5rem; font-weight: 700; color: var(--dark); margin-bottom: 0.25rem; text-align: center;
   }
-  .pkg-tagline { font-size: 0.82rem; color: var(--light-text); margin-bottom: 1.5rem; }
+  .pkg-tagline { font-size: 0.82rem; color: var(--light-text); margin-bottom: 1.5rem; text-align: center; }
   .pkg-price {
     font-family: 'Playfair Display', serif;
     font-size: 2.2rem; color: var(--terracotta); font-weight: 700;
@@ -304,18 +303,53 @@
   }
   .pkg-btn.solid:hover { background: var(--warm-brown); }
 
+/* STAJ */
+  .staj-layout {
+    display: grid; grid-template-columns: 1fr 2fr;
+    gap: 2.5rem; margin-top: 3rem; align-items: start;
+  }
+  .staj-main-card { display: flex; flex-direction: column; }
+  .staj-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2rem; }
+  .staj-list-col { display: flex; flex-direction: column; gap: 2rem; }
+  .staj-list-label {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--light-text);
+    margin-bottom: 0.75rem; padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .staj-list-item { padding: 0.65rem 0; border-bottom: 1px solid var(--border); }
+  .staj-list-item:last-child { border-bottom: none; }
+  .staj-list-item-header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 1rem; margin-bottom: 0.25rem;
+  }
+  .staj-list-item-name { font-weight: 700; font-size: 0.88rem; color: var(--dark); }
+  .staj-list-item-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; color: var(--terracotta);
+    font-weight: 700; white-space: nowrap; flex-shrink: 0;
+  }
+  .staj-list-item-desc { font-size: 0.8rem; color: var(--light-text); line-height: 1.6; }
+  .staj-list-item-note { color: var(--warm-brown); font-weight: 700; }
+
 /* HAKKINDA */
-  #hakkinda { background: var(--white); }
+  #hakkinda { background: var(--dark); }
+  #hakkinda .section-label { color: var(--gold); }
+  #hakkinda h2 { color: var(--white); }
+  #hakkinda h2 em { color: var(--gold); }
+  #hakkinda .about-text p { color: rgba(255,255,255,0.72); }
+  #hakkinda .exp-label { color: var(--white); }
+  #hakkinda .exp-sub { color: rgba(255,255,255,0.5); }
   .about-grid {
     display: grid; grid-template-columns: 1fr 1.4fr;
-    gap: 4rem; align-items: start; margin-top: 3rem;
+    gap: 4rem; align-items: center; margin-top: 3rem;
   }
   .about-portrait {
     background-image: url('IMG_1457.jpeg');
     background-size: cover;
-    background-position: center top;
+    background-position: center;
     border-radius: 24px;
-    aspect-ratio: 3/4;
+    aspect-ratio: 1;
     display: flex; align-items: flex-end;
     padding: 2rem;
     position: relative;
@@ -332,7 +366,7 @@
     font-weight: 700; position: relative; z-index: 1;
   }
   .portrait-sub { font-size: 0.8rem; color: rgba(255,255,255,0.75); margin-top: 0.25rem; }
-  .about-text p { font-size: 0.95rem; color: var(--mid); line-height: 1.85; margin-bottom: 1rem; }
+  .about-text p { font-size: 1.1rem; color: var(--mid); line-height: 1.85; margin-bottom: 1rem; }
   .experience-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
   .exp-item {
     display: flex; gap: 1rem; align-items: flex-start;
@@ -349,7 +383,7 @@
   #iletisim h2 { color: var(--white); }
   #iletisim h2 em { color: var(--gold); }
   .contact-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
+    display: grid; grid-template-columns: 1fr 2fr;
     gap: 3rem; margin-top: 3rem; align-items: start;
   }
   .contact-info-desc { font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 2rem; }
@@ -357,7 +391,7 @@
   .contact-link {
     display: flex; align-items: center; gap: 0.75rem;
     font-size: 0.9rem; color: rgba(255,255,255,0.85);
-    text-decoration: none; font-weight: 600;
+    text-decoration: underline; text-underline-offset: 3px; font-weight: 600;
     transition: color 0.2s;
   }
   .contact-link:hover { color: var(--gold); }
@@ -371,30 +405,12 @@
   .contact-form {
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 20px; padding: 2rem;
+    border-radius: 20px; padding: 1.25rem;
   }
-  .form-group { margin-bottom: 1rem; }
-  .form-group label { display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 0.4rem; }
-  .form-group input, .form-group textarea, .form-group select {
-    width: 100%; background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 10px; padding: 0.75rem 1rem;
-    color: white; font-family: 'Mulish', sans-serif;
-    font-size: 0.9rem; outline: none;
-    transition: border-color 0.2s;
+  .contact-form iframe {
+    width: 100%; height: 600px;
+    border: none; border-radius: 8px; display: block;
   }
-  .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
-  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--gold); }
-  .form-group textarea { resize: vertical; min-height: 90px; }
-  .form-group select option { background: #2a1f15; color: white; }
-  .form-submit {
-    width: 100%; background: var(--terracotta); color: white;
-    border: none; border-radius: 2rem; padding: 0.9rem;
-    font-family: 'Mulish', sans-serif; font-size: 0.9rem;
-    font-weight: 700; letter-spacing: 0.04em; cursor: pointer;
-    transition: background 0.2s;
-  }
-  .form-submit:hover { background: var(--gold); color: var(--dark); }
 
   /* FOOTER */
   footer {
@@ -404,12 +420,131 @@
   }
   footer strong { color: rgba(255,255,255,0.6); }
 
+  /* YORUMLAR */
+  #yorumlar { background: var(--cream); }
+  #yorumlar .section-inner { max-width: 1500px; }
+  #yorumlar .section-inner > .fade-up:first-child {
+    padding-left: clamp(0px, calc(50vw - 550px - 2rem), 200px);
+  }
+  .testimonial-slider { margin-top: 3rem; }
+  .testimonial-row { display: flex; align-items: center; gap: 1.25rem; }
+  .testimonial-track-outer { flex: 1; overflow: hidden; }
+  .testimonial-track {
+    display: flex;
+    gap: 24px;
+    transition: transform 0.42s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+  }
+  .testimonial-card {
+    flex: 0 0 auto;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    position: relative;
+    display: flex; flex-direction: column;
+  }
+  .testimonial-pkg  { order: 1; align-self: flex-start; }
+  .testimonial-author-row { order: 2; margin-bottom: 1.1rem; }
+  .testimonial-text { order: 3; margin-bottom: 0; }
+  .testimonial-arrow {
+    flex-shrink: 0;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    background: var(--white);
+    color: var(--warm-brown);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    display: flex; align-items: center; justify-content: center;
+    line-height: 1;
+  }
+  .testimonial-arrow:hover:not(:disabled) { background: var(--terracotta); color: white; border-color: var(--terracotta); }
+  .testimonial-arrow:disabled { opacity: 0.25; cursor: not-allowed; }
+  .testimonial-pkg {
+    display: inline-block;
+    background: rgba(193,103,58,0.1);
+    color: var(--terracotta);
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.28rem 0.85rem; border-radius: 2rem;
+    border: 1px solid rgba(193,103,58,0.25);
+    margin-bottom: 1.1rem;
+  }
+  .testimonial-text { font-size: 1rem; color: var(--mid); line-height: 1.85; font-style: italic; }
+  .testimonial-author-row { display: flex; align-items: center; gap: 1rem; }
+  .testimonial-author-name { font-weight: 700; color: var(--dark); font-size: 0.95rem; }
+  .testimonial-author-meta { font-size: 0.8rem; color: var(--light-text); margin-top: 2px; }
+  .testimonial-dots { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem; }
+  .testimonial-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--border); cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    border: none;
+  }
+  .testimonial-dot.active { background: var(--terracotta); transform: scale(1.3); }
+  .testimonial-text.clamped {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .read-more-btn {
+    order: 4; align-self: flex-start;
+    background: none; border: none; padding: 0;
+    margin-top: 0.6rem;
+    color: var(--terracotta); font-family: 'Mulish', sans-serif;
+    font-size: 0.85rem; font-weight: 700; letter-spacing: 0.02em;
+    cursor: pointer; transition: color 0.2s;
+  }
+  .read-more-btn:hover { color: var(--warm-brown); }
+
   /* RESPONSIVE */
   @media (max-width: 900px) {
     .hero-inner, .packages-grid, .packages-grid-2, .about-grid, .contact-grid { grid-template-columns: 1fr; }
-    .hero-stamp { display: none; }
-    nav ul { display: none; }
+    .staj-layout { grid-template-columns: 1fr; }
+    .staj-list { grid-template-columns: 1fr; }
+    .hamburger { display: flex; }
+    .nav-links {
+      flex-direction: column; gap: 0;
+      position: absolute; top: 100%; right: 0;
+      width: 75vw; max-width: 200px;
+      height: calc(100vh - 75px);
+      background: rgba(250,247,242,0.98);
+      border-left: 1px solid var(--border);
+      padding: 1.5rem 0;
+      box-shadow: -8px 0 24px rgba(107,66,38,0.1);
+      transform: translateX(100%);
+      visibility: hidden;
+      transition: transform 0.32s cubic-bezier(0.25,0.46,0.45,0.94), visibility 0s linear 0.32s;
+      overflow-y: auto;
+    }
+    nav.nav-open .nav-links {
+      transform: translateX(0);
+      visibility: visible;
+      transition: transform 0.32s cubic-bezier(0.25,0.46,0.45,0.94), visibility 0s linear 0s;
+    }
+    .nav-links a { color: var(--mid); padding: 0.85rem 2rem; display: block; font-size: 0.9rem; }
+    .nav-links a:hover { color: var(--terracotta); }
+    .nav-links .nav-cta { margin: 0.75rem 2rem 0; padding: 0.6rem 1.5rem; display: block; text-align: center; }
+    .nav-links .nav-cta:hover { background: var(--warm-brown) !important; }
     .mini-stats { grid-template-columns: 1fr 1fr 1fr; }
+
+    /* Yorumlar: single card, arrows overlaid on card edges */
+    #yorumlar .section-inner { max-width: 100%; }
+    #yorumlar .section-inner > .fade-up:first-child { padding-left: 0; }
+    .testimonial-row { position: relative; }
+    .testimonial-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 34px; height: 34px; font-size: 0.95rem;
+      background: rgba(255,255,255,0.92);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      z-index: 2;
+    }
+    #tPrev { left: 6px; }
+    #tNext { right: 6px; }
+    .testimonial-text { font-size: 0.85rem; }
   }
 
   /* SCROLL ANIMATION */
@@ -427,6 +562,11 @@
     <li><a href="#hakkinda">Hakkımda</a></li>
     <li><a href="#iletisim" class="nav-cta">İletişim</a></li>
   </ul>
+  <button class="hamburger" id="navHamburger" aria-label="Menüyü aç/kapat" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -435,22 +575,16 @@
   <div class="hero-pattern"></div>
   <div class="hero-inner">
     <div class="hero-left">
-      <div class="hero-eyebrow">Yurt Dışında Eğitim</div>
       <h1>Geleceğin<br><em>Avrupa'da</em></h1>
-      <p class="hero-desc">Avrupa'da lisans, yüksek lisans ve staj fırsatları için profesyonel danışmanlık sunuyorum. Başvurudan kabule, vizeden uyum sürecine kadar her adımda yanınızdayım.</p>
+      <div class="hero-eyebrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>Pasaportunu kap gidiyoruz!</div>
       <div class="hero-btns">
         <a href="#paketler" class="btn-primary">Paketleri İncele →</a>
-        <a href="#iletisim" class="btn-secondary">Ücretsiz Görüşme</a>
+        <a href="#iletisim" class="btn-primary">Ücretsiz Görüşme</a>
       </div>
     </div>
 
     <div class="hero-card">
-      <div class="hero-card-badge">✦ Eğitim Danışmanınız</div>
-      <div class="hero-stamp">
-        <span>Pasaportunu</span>
-        <span class="stamp-big">✈</span>
-        <span>Kap!</span>
-      </div>
+      <div class="hero-card-badge"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l10 10-10 10L2 12z"/></svg> Yurt Dışında Eğitim <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l10 10-10 10L2 12z"/></svg></div>
       <div class="profile-row">
         <div class="profile-avatar"></div>
         <div>
@@ -458,25 +592,22 @@
           <div class="profile-title">Psikolog & Eğitim Danışmanı</div>
         </div>
       </div>
-      <p class="profile-bio">Ege Üniversitesi Psikoloji bölümü mezunu. Hollanda'da Erasmus, Barselona'da staj deneyiminin ardından Berlin'de yüksek lisans eğitimime devam ediyorum. Kendi tecrübelerimden yola çıkarak Avrupa'da eğitim almak isteyen öğrencilere rehberlik ediyorum.</p>
+        <p class="profile-bio">Avrupa'da lisans, yüksek lisans ve staj fırsatları için profesyonel danışmanlık sunuyorum.</p>
+        <p class="profile-bio">CV ve motivasyon mektubu hazırlığına destek veriyor, başvurudan kabul sürecine, vize işlemlerinden uyum sürecine kadar yanınızda oluyorum.</p>
+        <p class="profile-bio">Hayallerinizi gerçeğe dönüştürmek için doğru adımı birlikte atalım!</p>
       <div class="mini-stats">
         <div class="mini-stat">
-          <div class="mini-stat-num">🎓</div>
+          <div class="mini-stat-num"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
           <div class="mini-stat-lbl">Lisans</div>
         </div>
         <div class="mini-stat">
-          <div class="mini-stat-num">📚</div>
+          <div class="mini-stat-num"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
           <div class="mini-stat-lbl">Yüksek Lisans</div>
         </div>
         <div class="mini-stat">
-          <div class="mini-stat-num">💼</div>
+          <div class="mini-stat-num"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
           <div class="mini-stat-lbl">Staj</div>
         </div>
-      </div>
-      <div class="contact-chips">
-        <div class="chip"><span class="chip-icon">📞</span> +49 177 628 3932</div>
-        <div class="chip"><span class="chip-icon">✉️</span> psk.aysesahin@gmail.com</div>
-        <div class="chip"><span class="chip-icon">📸</span> @saysehn</div>
       </div>
     </div>
   </div>
@@ -494,15 +625,14 @@
     <div class="packages-grid">
       <!-- TEMEL -->
       <div class="package-card fade-up">
-        <div class="pkg-icon bronze">🎓</div>
         <div class="pkg-name">Temel Paket</div>
         <div class="pkg-tagline">Başvuru sürecinde destek</div>
-        <div class="pkg-price">850 € <span>tek seferlik</span></div>
+        <div class="pkg-price">950 € <span>tek seferlik</span></div>
         <ul class="pkg-features">
           <li>Niteliklerinize uygun üniversite & bölüm seçimi</li>
-          <li>Başvuru belgelerinin hazırlanması ve çevirisi</li>
           <li>CV ve motivasyon mektubu hazırlama desteği</li>
-          <li>Üniversite başvurularının yapılması ve takibi</li>
+          <li>Üniversite başvuru belgelerinin hazırlanması ve tercümesi*</li>
+          <li>Üniversite başvurularının yapılması ve takibi*</li>
         </ul>
         <p class="pkg-note">* Tercüme ve üniversite başvuru ücretleri dahil değildir.</p>
         <a href="#iletisim" class="pkg-btn outline">Bilgi Al</a>
@@ -510,18 +640,17 @@
 
       <!-- STANDART - FEATURED -->
       <div class="package-card featured fade-up">
-        <div class="featured-badge">⭐ En Çok Tercih Edilen</div>
-        <div class="pkg-icon silver">🌍</div>
+        <div class="featured-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg> En Çok Tercih Edilen <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
         <div class="pkg-name">Standart Paket</div>
         <div class="pkg-tagline">Vizeye kadar tam destek</div>
-        <div class="pkg-price">1.200 € <span>tek seferlik</span></div>
+        <div class="pkg-price">1.400 € <span>tek seferlik</span></div>
         <ul class="pkg-features">
           <li>Temel Paketin tüm içerikleri</li>
-          <li>Almanca kursu seçimi ve kayıt desteği</li>
+          <li>Dil kursu seçimi ve kayıt desteği</li>
           <li>Bloke hesap / garantörlük danışmanlığı</li>
           <li>Sağlık sigortası danışmanlığı</li>
-          <li>Vize başvurusu için belge hazırlama</li>
-          <li>Vize başvurusunun yapılması ve takibi</li>
+          <li>Vize başvurusu için belgelerin hazırlanması</li>
+          <li>Vize başvurusunun yapılması ve takibi*</li>
         </ul>
         <p class="pkg-note">* Vize başvuru ücreti dahil değildir.</p>
         <a href="#iletisim" class="pkg-btn solid">Hemen Başla</a>
@@ -529,19 +658,17 @@
 
       <!-- PREMIUM -->
       <div class="package-card fade-up">
-        <div class="pkg-icon gold-bg">✨</div>
         <div class="pkg-name">Premium Paket</div>
         <div class="pkg-tagline">Varışa kadar yanınızda</div>
-        <div class="pkg-price">1.500 € <span>tek seferlik</span></div>
+        <div class="pkg-price">1.600 € <span>tek seferlik</span></div>
         <ul class="pkg-features">
           <li>Standart Paketin tüm içerikleri</li>
           <li>Yurt başvurusu desteği</li>
           <li>Bloke hesap aktivasyonu ve banka hesabı açılması</li>
           <li>Telefon hattı kurulumu</li>
-          <li>Anmeldung (ikametgah bildirimi) desteği</li>
-          <li>Almanya'ya varıştan itibaren 3 ay online uyum desteği</li>
+          <li>Zorunlu ikametgah bildirimi desteği</li>
+          <li>Avrupa'ya varıştan itibaren 3 ay online uyum desteği</li>
         </ul>
-        <p class="pkg-note">* Havalimanı karşılaması opsiyonel (+150 €).</p>
         <a href="#iletisim" class="pkg-btn outline">Bilgi Al</a>
       </div>
     </div>
@@ -553,42 +680,96 @@
   <div class="section-inner">
     <div class="fade-up">
       <div class="section-label">Hizmetler</div>
-      <h2><em>Staj</em> Danışmanlığı</h2>
-      <p class="section-desc">Avrupa'da staj yapmak isteyenler için iki farklı destek paketi. Kendi staj deneyimlerimden yola çıkarak süreci sizin için kolaylaştırıyorum.</p>
+      <h2><em>Staj ve Diğer</em> Danışmanlıklar</h2>
     </div>
 
-    <div class="packages-grid-2">
-      <!-- BAŞVURU -->
-      <div class="package-card fade-up">
-        <div class="pkg-icon bronze">💼</div>
-        <div class="pkg-name">Başvuru Paketi</div>
-        <div class="pkg-tagline">Başvurudan kabule destek</div>
+    <div class="staj-layout">
+
+      <!-- SOL 1/3: Paket -->
+      <div class="package-card featured staj-main-card fade-up">
+        <div class="pkg-name">Staj Paketi</div>
+        <div class="pkg-tagline"></div>
         <div class="pkg-price">400 € <span>tek seferlik</span></div>
         <ul class="pkg-features">
-          <li>Profilinize uygun staj pozisyonlarının araştırılması</li>
-          <li>CV ve motivasyon mektubu hazırlama</li>
-          <li>Başvuruların yapılması ve takibi</li>
+          <li>Profilinize ve isteklerinize uygun staj pozisyonlarının araştırılması</li>
+          <li>Pozisyonlara uygun CV taslağı hazırlanması</li>
+          <li>Başvuru email taslağı hazırlanması</li>
           <li>Başvuru stratejisi danışmanlığı</li>
         </ul>
-        <a href="#iletisim" class="pkg-btn outline">Bilgi Al</a>
+        <a href="#iletisim" class="pkg-btn solid" style="margin-top:auto;">Hemen Başla</a>
       </div>
 
-      <!-- TAM DESTEK - FEATURED -->
-      <div class="package-card featured fade-up">
-        <div class="featured-badge">⭐ Önerilen</div>
-        <div class="pkg-icon silver">🌍</div>
-        <div class="pkg-name">Tam Destek Paketi</div>
-        <div class="pkg-tagline">Varışa kadar yanınızda</div>
-        <div class="pkg-price">700 € <span>tek seferlik</span></div>
-        <ul class="pkg-features">
-          <li>Başvuru Paketinin tüm içerikleri</li>
-          <li>Çalışma izni / vize danışmanlığı</li>
-          <li>Konaklama araştırması desteği</li>
-          <li>Sağlık sigortası danışmanlığı</li>
-          <li>Varıştan itibaren 1 ay online uyum desteği</li>
-        </ul>
-        <p class="pkg-note">* Vize başvuru ücreti dahil değildir.</p>
-        <a href="#iletisim" class="pkg-btn solid">Hemen Başla</a>
+      <!-- SAĞ 2/3: Bireysel hizmetler listesi -->
+      <div class="staj-list fade-up">
+
+        <div class="staj-list-col">
+        <div class="staj-list-group">
+          <div class="staj-list-label">CV ve Motivasyon Mektubu Seansları</div>
+          <div class="staj-list-item">
+            <div class="staj-list-item-header">
+              <span class="staj-list-item-name">CV Taslak Hazırlama</span>
+              <span class="staj-list-item-price"></span>
+            </div>
+            <p class="staj-list-item-desc">Bilgi toplama formu sonrası sıfırdan Almanya standardında CV hazırlanır; 1 revizyon hakkı dahildir.</p>
+          </div>
+          <div class="staj-list-item">
+            <div class="staj-list-item-header">
+              <span class="staj-list-item-name">CV Geri Bildirimi</span>
+              <span class="staj-list-item-price"></span>
+            </div>
+            <p class="staj-list-item-desc">60 dk online görüşmede Almanya formatına uygunluk kontrolü yapılır ve yazılı özet notlar teslim edilir.</p>
+          </div>
+          <div class="staj-list-item">
+            <div class="staj-list-item-header">
+              <span class="staj-list-item-name">Motivasyon Mektubu Taslak Hazırlama</span>
+              <span class="staj-list-item-price"></span>
+            </div>
+            <p class="staj-list-item-desc">Brief formu ile sıfırdan yazılır, taslak 5 iş günü içinde teslim edilir; 1 revizyon hakkı dahildir.</p>
+          </div>
+          <div class="staj-list-item">
+            <div class="staj-list-item-header">
+              <span class="staj-list-item-name">Motivasyon Mektubu Geri Bildirimi</span>
+              <span class="staj-list-item-price"></span>
+            </div>
+            <p class="staj-list-item-desc">Asenkron yürütülür, yazılı geri bildirim 3 iş günü içinde teslim edilir; 1 revizyon turu dahildir.</p>
+          </div>
+        </div>
+
+        </div><!-- /staj-list-col -->
+        <div class="staj-list-col">
+        <div class="staj-list-group">
+          <div class="staj-list-label">Danışmanlık Seansları</div>
+          <div class="staj-list-item">
+            <div class="staj-list-item-header">
+              <span class="staj-list-item-name">Üniversite & Program Seçim Seansı</span>
+              <span class="staj-list-item-price"></span>
+            </div>
+            <p class="staj-list-item-desc">60 dk online görüşmede not, dil ve hedefe göre 3–5 program analiz edilir; yazılı özet ve öneri listesi teslim edilir.</p>
+          </div>
+          <div class="staj-list-item">
+            <div class="staj-list-item-header">
+              <span class="staj-list-item-name">Başvuru Stratejisi Seansı</span>
+              <span class="staj-list-item-price"></span>
+            </div>
+            <p class="staj-list-item-desc">60 dk online görüşmede hangi üniversitelere, hangi sırayla ve ne zaman başvurulacağı planlanır.</p>
+          </div>
+          <div class="staj-list-item">
+            <div class="staj-list-item-header">
+              <span class="staj-list-item-name">Vize Hazırlık Seansı</span>
+              <span class="staj-list-item-price"></span>
+            </div>
+            <p class="staj-list-item-desc">45 dk online görüşmede bloke hesap, belgeler ve randevu süreci aktarılır; belge kontrol listesi teslim edilir.</p>
+          </div>
+          <div class="staj-list-item">
+            <div class="staj-list-item-header">
+              <span class="staj-list-item-name">Aile Bilgilendirme Görüşmesi</span>
+              <span class="staj-list-item-price"></span>
+            </div>
+            <p class="staj-list-item-desc">45 dk Türkçe görüşmede eğitim süreci, maliyetler ve güvenlik aktarılır. <span class="staj-list-item-note">Paket alan öğrencilerin aileleri için ücretsizdir.</span></p>
+          </div>
+        </div>
+        </div><!-- /staj-list-col -->
+
       </div>
     </div>
   </div>
@@ -609,39 +790,94 @@
         </div>
       </div>
       <div class="about-text fade-up">
-        <p>Ege Üniversitesi Psikoloji bölümünden mezun oldum. Lisans sürecimde Hollanda'da Erasmus eğitimi aldım ve Barselona'da staj deneyimi yaşadım. Şu anda Berlin'de yüksek lisans eğitimime devam ediyorum.</p>
+        <p>Merhaba, ben Ayşe!</p>
+        <p>Ege Üniversitesi Psikoloji bölümünde lisans eğitimi aldım. Hollanda'da Erasmus öğrenim programına katıldım ve İspanya'da staj deneyimi yaşadım. Şimdi ise Berlin'de yüksek lisans eğitimime devam ediyor ve aynı zamanda çalışıyorum.</p>
         <p>Yurt dışında eğitim almanın ne kadar zorlu ve bir o kadar da dönüştürücü bir deneyim olduğunu bizzat yaşadım. Belge karmaşasından vize stresine, şehir uyumundan yurt bulmaya kadar pek çok engeli aşmak zorunda kaldım.</p>
-        <p>Tüm bu deneyimlerimi sizin için bir rehbere dönüştürüyorum. Avrupa'da eğitim almak isteyen öğrencilerin sürecini olabildiğince kolay ve stressiz geçirmeleri için buradayım.</p>
-        <div class="experience-list">
-          <div class="exp-item">
-            <div class="exp-dot"></div>
-            <div>
-              <div class="exp-label">Ege Üniversitesi</div>
-              <div class="exp-sub">Psikoloji Lisansı • İzmir, Türkiye</div>
+        <p>Tüm bu deneyimlerimi sizin için bir rehbere dönüştürüyorum. Kendi tecrübelerimden yola çıkarak Avrupa'da eğitim almak isteyen öğrencilere yol göstermeyi ve onların sürecini kolaylaştırmayı hedefliyorum.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- YORUMLAR -->
+<section id="yorumlar">
+  <div class="section-inner">
+    <div class="fade-up">
+      <div class="section-label">Öğrenci Deneyimleri</div>
+      <h2><em>Yorumlar</em></h2>
+      <p class="section-desc">Avrupa yolculuğuna birlikte çıktığım bazı danışanlarımın deneyimleri.</p>
+    </div>
+    <div class="testimonial-slider fade-up">
+      <div class="testimonial-row">
+        <button class="testimonial-arrow" id="tPrev" aria-label="Önceki">&#8592;</button>
+        <div class="testimonial-track-outer">
+          <div class="testimonial-track" id="tTrack">
+
+            <div class="testimonial-card">
+              <div class="testimonial-pkg">PREMIUM YÜKSEK LISANS PAKETI</div>
+              <p class="testimonial-text">Almanya'da bilgisayar mühendisliği alanında yüksek lisans yapmak istediğimde aklımda çok net bir hedef vardı ama o hedefe giden yolu bulmak düşündüğümden çok daha zordu. Hangi üniversitelerin programlarının gerçekten isteklerime uyduğunu, başvuru koşullarının ne olduğunu araştırmak başlı başına bir iş. Ayşe bu konuda inanılmaz bir rehberlik yaptı, seçenekleri benimle beraber değerlendirdi ve en uygun programlara odaklanmamı sağladı. Vize sürecinde de çok iyiydi, sürecin hiçbir aşamasında kaybolmuş hissetmedim. Almanya'ya vardıktan sonra da bürokratik işlemlerde yanımdaydı. İkamet kaydı, gerekli belgeler derken insanın içi sıkışabiliyor ama o hepsini çok sakin ve sistematik bir şekilde halletti. Bu tür bir destek olmadan süreci bu kadar sorunsuz geçiremezdim.</p>
+              <div class="testimonial-author-row">
+                <div>
+                  <div class="testimonial-author-name">Orkun E.</div>
+                  <div class="testimonial-author-meta">Bonn Üniversitesi, Almanya - M.Sc. Computer Science</div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="exp-item">
-            <div class="exp-dot"></div>
-            <div>
-              <div class="exp-label">Erasmus Değişim Programı</div>
-              <div class="exp-sub">Hollanda</div>
+
+            <div class="testimonial-card">
+              <div class="testimonial-pkg">STANDART YÜKSEK LISANS PAKETI</div>
+              <p class="testimonial-text">Yurt dışında yüksek lisans yapmak istediğimi biliyordum ama hangi ülke, hangi üniversite, hangi program diye sormaya başlayınca gerçekten bunaldım. Ayşe ile görüşmeye başladığımda kafamdaki o karmaşa yavaş yavaş dağıldı. Beni dinledi, ne istediğimi ve ne beklediğimi anladı, profilime gerçekten uyan programları tek tek inceledi. Hiç düşünmediğim ama sonradan çok memnun olduğum seçenekler de önerdi. Vize sürecinde de tamamen yanımdaydı. Hangi belge ne zaman, nasıl teslim edilecek, her şeyi adım adım yönetti. Ben sadece gerekenleri yaptım, gerisini o halletti. Tek başıma bu süreci yönetseydim çok daha uzun ve stresli geçerdi. Kesinlikle tavsiye ediyorum.</p>
+              <div class="testimonial-author-row">
+                <div>
+                  <div class="testimonial-author-name">Furkan K.</div>
+                  <div class="testimonial-author-meta">Köln Üniversitesi, Almanya - M.Sc. Experimental and Clinical Neuroscience</div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="exp-item">
-            <div class="exp-dot"></div>
-            <div>
-              <div class="exp-label">Staj Deneyimi</div>
-              <div class="exp-sub">Barselona, İspanya</div>
+
+            <div class="testimonial-card">
+              <div class="testimonial-pkg">STANDART LISANS PAKETI</div>
+              <p class="testimonial-text">Almanya'da üniversite okumak istiyordum ama dil engeli vardı, bu yüzden önce iyi bir Almanca kursu bulmam gerekiyordu. Ne var ki hangi kursu seçeceğimi, nerede kayıt olacağımı, bunun vize süreciyle nasıl ilişkilendireceğimi hiç bilmiyordum. Ayşe ile çalışmaya başlayınca her şey çok daha net bir hal aldı. İhtiyaçlarımı, bütçemi ve planlarımı dinledikten sonra bana uygun kursları araştırdı ve kaydımı yaptırdı. Bunun yanında garantörlük sürecimi ve sağlık sigortası işlemlerimi de eksiksiz halletti, hiçbir şeyle tek başıma uğraşmak zorunda kalmadım. Şu an Hamburg'da Almanca kursuma devam ediyorum. Almanca öğrendikten sonra üniversite başvuru sürecimi de Ayşe ile birlikte yürüteceğiz ve açıkçası o adım için de çok umutluyum.</p>
+              <div class="testimonial-author-row">
+                <div>
+                  <div class="testimonial-author-name">E. A.</div>
+                  <div class="testimonial-author-meta">Dil okulu, Hamburg, Almanya</div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="exp-item">
-            <div class="exp-dot"></div>
-            <div>
-              <div class="exp-label">Yüksek Lisans Öğrencisi</div>
-              <div class="exp-sub">Berlin, Almanya (Devam ediyor)</div>
+
+            <div class="testimonial-card">
+              <div class="testimonial-pkg">PREMIUM YÜKSEK LISANS PAKETI</div>
+              <p class="testimonial-text">Almanya'da İngilizce yüksek lisans aramak düşündüğümden çok daha zordu. Çok fazla araştırma yaptım ama içime sinen bir program bir türlü bulamadım. Ayşe kısa sürede hem profile uygun hem de gerçekten heyecanlanabileceğim seçenekler buldu. Vize konusunda ise çevremden o kadar çok korkunç şey duymuştum ki sürece başlamadan strese girmiştim. Ama Ayşe her şeyi o kadar düzenli yönetti ki endişelenecek bir şey bile bulamadım. Hangi belge, ne zaman, nasıl olacağını planladı, ben sadece gerekenleri yerine getirdim. Vize sürecinin aslında bu kadar da korkutucu olmadığını sonradan anladım, ama bunun büyük payı Ayşe'nin bu işe hakimiyetindeydi. Kararsız olanlara şunu söyleyebilirim: bu desteği almaya gerçekten değer.</p>
+              <div class="testimonial-author-row">
+                <div>
+                  <div class="testimonial-author-name">Yusuf E.</div>
+                  <div class="testimonial-author-meta">Marburg Üniversitesi, Almanya - M.Sc. Data Science</div>
+                </div>
+              </div>
             </div>
+
+            <div class="testimonial-card">
+              <div class="testimonial-pkg">PREMIUM LISANS PAKETI</div>
+              <p class="testimonial-text">YKS sonuçlarımdan sonra Almanya'da Elektrik-Elektronik Mühendisliği okumak istediğime karar verdim ama nereden başlayacağım konusunda gerçekten hiçbir fikrim yoktu. Ayşe ile görüştüğümde birlikte değerlendirdik ve direkt üniversite başvurusuna atlamak yerine önce dil kursuyla başlamamın sene kaybetmemem açısından çok daha doğru olacağına karar verdik. O kararı almak bile başlı başına rahatlatıcıydı, en azından bir yol haritam olmuştu. Dil kursuna başlama sürecini de Ayşe yönetti ve bana uygun kursu buldu, kaydımı yaptırdı, vize için gereken belgeleri hazırlamama yardımcı oldu. Almanya'ya vardıktan sonra da yanımdaydı. İkamet kaydı, banka hesabı, telefon hattı gibi küçük ama yabancı bir şehirde can sıkıcı olabilen her şeyi birlikte hallettik. Hatta iş arama sürecime bile destek oldu. Şu an Berlin'de dil kursumu bitirmek üzereyim ve lisans başvurularım için Ayşe ile kaldığımız yerden devam edeceğiz. Uzun bir yolculuk ama hiçbir adımında yalnız hissetmedim.</p>
+              <div class="testimonial-author-row">
+                <div>
+                  <div class="testimonial-author-name">Onur S.</div>
+                  <div class="testimonial-author-meta">Dil okulu, Berlin, Almanya</div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
+        <button class="testimonial-arrow" id="tNext" aria-label="Sonraki">&#8594;</button>
+      </div>
+      <div class="testimonial-dots" id="tDots">
+        <button class="testimonial-dot active" aria-label="1"></button>
+        <button class="testimonial-dot" aria-label="2"></button>
+        <button class="testimonial-dot" aria-label="3"></button>
+        <button class="testimonial-dot" aria-label="4"></button>
+        <button class="testimonial-dot" aria-label="5"></button>
       </div>
     </div>
   </div>
@@ -650,53 +886,31 @@
 <!-- CONTACT -->
 <section id="iletisim">
   <div class="section-inner">
-    <div class="fade-up">
-      <div class="section-label" style="color: var(--gold);">İletişim</div>
-      <h2>Hayallerinizi <em>konuşalım</em></h2>
-    </div>
     <div class="contact-grid">
       <div class="fade-up">
+        <div class="section-label" style="color: var(--gold);">İletişim</div>
+        <h2>Hayallerinizi <em>konuşalım</em></h2>
         <p class="contact-info-desc">Avrupa'daki eğitim yolculuğunuza ilk adımı atmak için benimle iletişime geçin. Ücretsiz bir ön görüşme ile sizin için en uygun paketi birlikte belirleyelim.</p>
         <div class="contact-links">
-          <a href="tel:+4917762839832" class="contact-link">
-            <div class="contact-link-icon">📞</div>
+          <a href="https://wa.me/4917762839832" class="contact-link" target="_blank">
+            <div class="contact-link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></div>
             +49 177 628 3932
           </a>
           <a href="mailto:psk.aysesahin@gmail.com" class="contact-link">
-            <div class="contact-link-icon">✉️</div>
+            <div class="contact-link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
             psk.aysesahin@gmail.com
-          </a>
-          <a href="https://instagram.com/saysehn" class="contact-link" target="_blank">
-            <div class="contact-link-icon">📸</div>
-            @saysehn
           </a>
         </div>
       </div>
 
       <div class="contact-form fade-up">
-        <div class="form-group">
-          <label>Adınız Soyadınız</label>
-          <input type="text" placeholder="Adınızı giriniz">
-        </div>
-        <div class="form-group">
-          <label>E-posta</label>
-          <input type="email" placeholder="ornek@email.com">
-        </div>
-        <div class="form-group">
-          <label>İlgilendiğiniz Paket</label>
-          <select>
-            <option value="">Paket seçiniz...</option>
-            <option>Temel Paket – 850 €</option>
-            <option>Standart Paket – 1.200 €</option>
-            <option>Premium Paket – 1.500 €</option>
-            <option>Henüz karar vermedim</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Mesajınız</label>
-          <textarea placeholder="Sizi daha iyi tanımak için neler paylaşmak istersiniz?"></textarea>
-        </div>
-        <button class="form-submit" onclick="alert('Mesajınız için teşekkürler! En kısa sürede size dönüş yapılacaktır.')">Mesaj Gönder ✈</button>
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSd0qOBsZ2z7CRIAkVsQKw-wuAiTjEK2B5D15kJCLEO4U5Rj7g/viewform?embedded=true"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0">
+          Yükleniyor…
+        </iframe>
       </div>
     </div>
   </div>
@@ -708,6 +922,23 @@
 </footer>
 
 <script>
+// Read-more toggles for long testimonial comments
+(function () {
+  var THRESHOLD = 180;
+  document.querySelectorAll('.testimonial-text').forEach(function (p) {
+    if (p.textContent.trim().length <= THRESHOLD) return;
+    p.classList.add('clamped');
+    var btn = document.createElement('button');
+    btn.className = 'read-more-btn';
+    btn.textContent = 'Devamını oku...';
+    btn.addEventListener('click', function () {
+      var collapsed = p.classList.toggle('clamped');
+      btn.textContent = collapsed ? 'Devamını oku...' : 'Daha az göster';
+    });
+    p.insertAdjacentElement('afterend', btn);
+  });
+})();
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((e, i) => {
     if (e.isIntersecting) {
@@ -717,6 +948,78 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
+// Testimonial carousel — seamless infinite loop
+(function () {
+  var VISIBLE = 2;
+  var GAP = 24; // must match gap: 24px in CSS
+
+  var track = document.getElementById('tTrack');
+  var outer = track.parentElement;
+  var prev  = document.getElementById('tPrev');
+  var next  = document.getElementById('tNext');
+  var dots  = document.querySelectorAll('.testimonial-dot');
+  var TOTAL = dots.length; // 4
+
+  // Build a triple ring: [clone_set | real_set | clone_set]
+  // Prepend in reverse order so the cloned set is in correct card order
+  var real = Array.from(track.querySelectorAll('.testimonial-card'));
+  real.slice().reverse().forEach(function (c) {
+    track.insertBefore(c.cloneNode(true), track.firstChild);
+  });
+  real.forEach(function (c) { track.appendChild(c.cloneNode(true)); });
+
+  var all = Array.from(track.querySelectorAll('.testimonial-card')); // 15 cards (5 × 3)
+
+  // Start at the real first card (index TOTAL = 4 in the 12-item ring)
+  var idx  = TOTAL;
+  var busy = false;
+
+  function step() { return all[0].offsetWidth + GAP; }
+
+  function setPos(animate) {
+    track.style.transition = animate ? 'transform 0.42s cubic-bezier(0.25,0.46,0.45,0.94)' : 'none';
+    track.style.transform  = 'translateX(-' + (idx * step()) + 'px)';
+  }
+
+  function syncDots() {
+    var a = ((idx - TOTAL) % TOTAL + TOTAL) % TOTAL;
+    dots.forEach(function (d, i) { d.classList.toggle('active', i === a); });
+  }
+
+  function layout() {
+    busy = false;
+    var visible = window.innerWidth <= 900 ? 1 : VISIBLE;
+    var cw = (outer.offsetWidth - GAP * (visible - 1)) / visible;
+    all.forEach(function (c) { c.style.width = cw + 'px'; });
+    setPos(false);
+  }
+
+  function go(n) {
+    if (busy) return;
+    busy = true;
+    idx = n;
+    setPos(true);
+    syncDots();
+  }
+
+  track.addEventListener('transitionend', function (e) {
+    if (e.propertyName !== 'transform' || !busy) return;
+    busy = false;
+    // Silently jump back into the real set when hitting either buffer
+    if (idx < TOTAL)         { idx += TOTAL; setPos(false); }
+    else if (idx >= TOTAL*2) { idx -= TOTAL; setPos(false); }
+  });
+
+  next.addEventListener('click', function () { go(idx + 1); });
+  prev.addEventListener('click', function () { go(idx - 1); });
+  dots.forEach(function (d, i) {
+    d.addEventListener('click', function () { if (!busy) go(TOTAL + i); });
+  });
+
+  layout();
+  window.addEventListener('resize', layout, { passive: true });
+})();
+
 const nav = document.querySelector('nav');
 function updateNav() {
   const heroHeight = document.querySelector('.hero').offsetHeight;
@@ -724,6 +1027,31 @@ function updateNav() {
 }
 window.addEventListener('scroll', updateNav, { passive: true });
 updateNav();
+
+// Hamburger menu
+(function () {
+  var ham = document.getElementById('navHamburger');
+  function closeMenu() {
+    ham.classList.remove('open');
+    nav.classList.remove('nav-open');
+    ham.setAttribute('aria-expanded', 'false');
+  }
+  ham.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var open = ham.classList.toggle('open');
+    nav.classList.toggle('nav-open', open);
+    ham.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  nav.querySelectorAll('.nav-links a').forEach(function (a) {
+    a.addEventListener('click', closeMenu);
+  });
+  document.addEventListener('click', function (e) {
+    if (!nav.contains(e.target)) closeMenu();
+  });
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 900) closeMenu();
+  }, { passive: true });
+})();
 </script>
 </body>
 </html>
